@@ -1,0 +1,6 @@
+<div class="input-group mb-3">
+  <input type="text" class="form-control" placeholder="Enter city name" [(ngModel)]="searchQuery" (keyup.enter)="searchCity()">
+  <button class="btn btn-outline-secondary" type="button" (click)="searchCity()">
+    <i class="bi bi-search"></i>
+  </button>
+</div>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CityService } from './service/city/city.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'weather-app';
+
+  constructor(private cityService:CityService){
+  }
+
+  resetToHome() {
+    this.cityService.resetToHome();
+  }
 }

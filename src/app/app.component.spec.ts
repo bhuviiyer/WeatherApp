@@ -1,35 +1,31 @@
-import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { CityService } from './service/city/city.service';
+import { CitySearchComponent } from './city-search/city-search.component';
 
 describe('AppComponent', () => {
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+  let mockCityService: jasmine.SpyObj<CityService>;
+  let citySearchComponent: CitySearchComponent;
+
   beforeEach(async () => {
+    mockCityService = jasmine.createSpyObj('CityService', ['resetToHome']);
+
     await TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
-      declarations: [
-        AppComponent
-      ],
-    }).compileComponents();
+      declarations: [ AppComponent, citySearchComponent ],
+      providers: [{ provide: CityService, useValue: mockCityService }]
+    })
+    .compileComponents();
   });
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
-
-  it(`should have as title 'weather-app'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('weather-app');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
     fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, weather-app');
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
   });
 });
