@@ -74,26 +74,27 @@ export class WeatherComponent implements OnInit{
     if(this.city){
       this.weatherService.getForecast(lat,lon).subscribe(data=>{
         this.forecast = data;
+        this.processForecastData();
       })
     }
     else{
       this.forecast = null;
     }
-    this.processForecastData();
   }
 
   processForecastData(): void {
-    const todayTimestamp = new Date();
-    todayTimestamp.setHours(0, 0, 0, 0)
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
     if (this.forecast && this.forecast.daily) {
-        const updatedDaily = this.forecast.daily.filter((day: { dt: number })=>
-        {
-          const dayDate = new Date(day.dt * 1000);
-          return dayDate.getDate() > todayTimestamp.getDate();
-        }).slice(0,5);
-        this.forecast = { ...this.forecast, daily: updatedDaily };
+        const updatedDaily = this.forecast.daily.filter((day: { dt: number }) => {
+            const dayDate = new Date(day.dt * 1000);
+            return dayDate.getDate() > today.getDate();
+        });
+        this.forecast = { ...this.forecast, daily: updatedDaily.slice(0,5)};
     }
-}
+  }
+
 
   getToday(): Date {
     const today = new Date();

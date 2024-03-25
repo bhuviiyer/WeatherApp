@@ -28,7 +28,6 @@ export class WeatherService {
   getForecast(lat: number,lon: number): Observable<any> {
     if (environment.testing) {
       const filteredForecastData = mockForecastData.find(entry => entry.lat === lat && entry.lon === lon);
-      console.log("The test data is:" + filteredForecastData)
       return of(filteredForecastData ? filteredForecastData : null);
     }
     else
