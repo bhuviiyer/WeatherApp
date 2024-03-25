@@ -1,0 +1,61 @@
+<div *ngIf="filteredWeather" class="container-fluid mt-3">
+  <div class="row justify-content-center">
+    <div class="col-md-12">
+      <div class="card border-top border-bottom">
+        <div class="card-header p-2">
+          <div class="text-left">
+            <h4>Next hours</h4>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="weather-items-container">
+            <div *ngFor="let hour of filteredWeather?.hourly;let isFirst = first" [class]= "isFirst? 'weather-item' :'weather-item partition'">
+              <p class="card-text"> {{ hour.temp }}°</p>
+              <p class="card-text text-primary">{{ hour.humidity }}%</p>
+              <img src="http://openweathermap.org/img/wn/{{hour.weather[0].icon}}.png" alt="Weather icon" class="weather-icon">
+              <p class="card-title">{{ hour.dt * 1000 | date: 'shortTime' }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="forecast" class="container-fluid mt-3">
+  <div class="row justify-content-center">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4>Next 5 days</h4>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-12 mb-3" *ngFor="let day of forecast.daily">
+              <div class="card">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <img src="http://openweathermap.org/img/wn/{{day.weather[0].icon}}.png" alt="Weather icon" class="weather-icon">
+                    </div>
+                    <div class="col-md-4">
+                      <p class="card-title"><strong>{{ day.dt | customDate  }}</strong></p>
+                      <p class="card-text">{{ day.weather[0].description}}</p>
+                    </div>
+                    <div class="col-md-2">
+                      <p class="card-text"><strong>{{ day.temp.max }}°</strong></p>
+                  </div>
+                  <div class="col-md-2">
+                    <p class="card-text"><strong>{{ day.temp.min }}°</strong></p>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

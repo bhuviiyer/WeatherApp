@@ -64,6 +64,14 @@
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
+            },
+            "testing": {
+              "fileReplacements": [
+                {
+                  "replace": "./src/environments/environment.ts",
+                  "with": "./src/environments/environment.testing.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -76,6 +84,9 @@
             },
             "development": {
               "buildTarget": "weather-app:build:development"
+            },
+            "testing": {
+              "buildTarget": "weather-app:build:testing"
             }
           },
           "defaultConfiguration": "development"
@@ -99,7 +110,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": []
           }
