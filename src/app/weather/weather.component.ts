@@ -48,7 +48,6 @@ export class WeatherComponent implements OnInit{
       this.weatherService.getWeather(lat,lon).subscribe(data=>{
         this.weather = data;
         this.filterHourlyData();
-        console.log('weather data:'+ this.filteredWeather);
       })
     }
     else {
@@ -75,7 +74,6 @@ export class WeatherComponent implements OnInit{
     if(this.city){
       this.weatherService.getForecast(lat,lon).subscribe(data=>{
         this.forecast = data;
-        console.log('Forecast data:', this.forecast);
       })
     }
     else{
@@ -95,7 +93,6 @@ export class WeatherComponent implements OnInit{
         }).slice(0,5);
         this.forecast = { ...this.forecast, daily: updatedDaily };
     }
-    console.log('Processed forecast data:', this.forecast);
 }
 
   getToday(): Date {

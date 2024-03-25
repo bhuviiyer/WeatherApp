@@ -26,8 +26,6 @@ export class CityTabComponent implements OnInit {
   }
 
   selectCity(city: any) {
-    console.log('City name changed to:', city.name);
-    console.log('City coordinates:', city.coord);
     this.cityService.setCurrentCity(city);
     this.currentCity = city;
   }

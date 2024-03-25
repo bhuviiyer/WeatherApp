@@ -24,10 +24,8 @@ export class CitySearchComponent {
             },
             name: data[0]?.city_name
           };
-          console.log('we set the searched city' + searchedCity.name);
           this.cityService.setCurrentCity(searchedCity);
         } else {
-          console.log('setting not from query' + data[0] );
           this.cityService.setCurrentCity(null);
         }
       });

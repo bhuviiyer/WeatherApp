@@ -55,7 +55,6 @@ export class CityService {
           } else {
             filteredData = data;
           }
-          console.log(filteredData);
           return filteredData;
         })
       );

@@ -11,13 +11,12 @@ import { of } from 'rxjs';
 })
 export class WeatherService {
 
-  private weatherUrl: string = 'https://api.openweathermap.org/data/2.5/onecall';
-  private apiKey: string = "482944e26d320a80bd5e4f23b3de7d1f"
+  private weatherUrl: string = environment.apiHostname;
+  private apiKey: string = environment.apiKey;
   constructor(private http: HttpClient) { }
   getWeather(lat: number,lon: number): Observable<any> {
     if (environment.testing) {
       const filteredData = mockWeatherData.find(entry => entry.lat === lat && entry.lon === lon);
-      console.log("The test data is:" + filteredData)
       return of(filteredData ? filteredData : null);
     }
     else{
