@@ -1,4 +1,6 @@
 export const environment = {
   production: false,
-  testing: true
+  testing: true,
+  apiKey: "",
+  apiHostname:""
 };

@@ -60,6 +60,13 @@
   height: auto;
 }
 
+/* Remove scrollbar for the entire app */
+html, body {
+  overflow-x: hidden; /* Hide scrollbars */
+  height: 100%; /* Full height */
+  width: 100%; /* Full width */
+}
+
 @media (min-width: 992px) {
   .container {
       width: 70%;
